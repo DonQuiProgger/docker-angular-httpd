@@ -1,0 +1,9 @@
+# for local testing deployments
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
+    restart: unless-stopped

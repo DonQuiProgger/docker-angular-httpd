@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -eu 
+
+ORG=${1:-donquiprogger}
+IMAGE=${2:-httpd-angular}
+
+# individual arch builds
+docker buildx build -f Dockerfile -t ${ORG}/${IMAGE}:armv7 --platform linux/arm/v7 --push .
+docker buildx build -f Dockerfile -t ${ORG}/${IMAGE}:arm64v8 --platform linux/arm64/v8 --push .
+docker buildx build -f Dockerfile -t ${ORG}/${IMAGE}:amd64 --platform linux/amd64 --push .
+
+# multiarch
+docker buildx build -f Dockerfile -t ${ORG}/${IMAGE} --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --push .
