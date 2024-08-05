@@ -4,7 +4,7 @@ on:
   push:
     branches: trunk
   schedule:
-    - cron:  '0 1 * * *'
+    - cron:  '0 1 * * 0'
 
 jobs:
   build:
